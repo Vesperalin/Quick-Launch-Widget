@@ -33,7 +33,7 @@ public class LaunchButton extends JButton implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        //
     }
 
     @Override
