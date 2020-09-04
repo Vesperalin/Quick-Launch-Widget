@@ -26,10 +26,10 @@ public class Widget extends JDialog {
     }
 
     private void initComponents(){
-        googleButton=new LaunchButton("src/main/resources/Google.png");
-        youtubeButton=new LaunchButton("src/main/resources/YouTube.png");
-        twitchButton=new LaunchButton("src/main/resources/Twitch.png");
-        translatorButton=new LaunchButton("src/main/resources/Translator.png");
+        googleButton=new LaunchButton("src/main/resources/Google.png", "www.google.com");
+        youtubeButton=new LaunchButton("src/main/resources/YouTube.png", "www.youtube.com");
+        twitchButton=new LaunchButton("src/main/resources/Twitch.png", "www.twitch.tv");
+        translatorButton=new LaunchButton("src/main/resources/Translator.png", "www.bab.la");
         mainPanel.add(googleButton);
         mainPanel.add(youtubeButton);
         mainPanel.add(twitchButton);

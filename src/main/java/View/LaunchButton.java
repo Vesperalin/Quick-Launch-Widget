@@ -1,20 +1,23 @@
 package View;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.URI;
 
 public class LaunchButton extends JButton implements MouseListener {
     private Color unpressedColor;
     private Color pressedColor;
+    private String uri;
 
-    public LaunchButton(String path){
+    public LaunchButton(String path, String uri){
         unpressedColor=new Color(250, 247, 195);
         pressedColor=new Color(240, 234, 154);
         initComponent(path);
         addMouseListener(this);
+        this.uri=uri;
     }
 
     private void initComponent(String path){
@@ -30,8 +33,7 @@ public class LaunchButton extends JButton implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        mousePressed(e);
-        mouseReleased(e);
+
     }
 
     @Override
@@ -42,6 +44,11 @@ public class LaunchButton extends JButton implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         this.setBackground(unpressedColor);
+        try{
+            Desktop.getDesktop().browse(URI.create(uri));
+        }catch(IOException exc){
+            JOptionPane.showMessageDialog(new JFrame(), "Can't connect with page");
+        }
     }
 
     @Override
