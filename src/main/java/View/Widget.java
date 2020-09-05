@@ -7,12 +7,14 @@ import java.awt.event.MouseEvent;
 
 public class Widget extends JDialog {
     private JPanel mainPanel;
+    private JPopupMenu exitMenu;
 
     public Widget(java.awt.Frame parent, boolean isModal){
         super(parent, isModal);
         this.setUndecorated(true);
         initPanel();
         initComponents();
+        initExitMenu();
         this.pack();
         DragListener drag = new DragListener();
         this.addMouseListener(drag);
@@ -39,13 +41,33 @@ public class Widget extends JDialog {
         mainPanel.add(translatorButton);
     }
 
-    private static class DragListener extends MouseInputAdapter{
+    private void initExitMenu(){
+        exitMenu=new JPopupMenu("Exit menu");
+        JMenuItem exitItem=new JMenuItem("Exit");
+        exitMenu.add(exitItem);
+        exitItem.addActionListener(e -> {
+            dispose();
+            System.exit(0);
+        });
+    }
+
+    private class DragListener extends MouseInputAdapter{
         private Point location;
         private MouseEvent pressed;
 
         @Override
         public void mousePressed(MouseEvent me) {
             pressed = me;
+            if (me.isPopupTrigger()) {
+                exitMenu.show(me.getComponent(), me.getX(), me.getY());
+            }
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            if (me.isPopupTrigger()) {
+                exitMenu.show(me.getComponent(), me.getX(), me.getY());
+            }
         }
 
         @Override
