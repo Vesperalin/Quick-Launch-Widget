@@ -1,5 +1,5 @@
 # Quick Launch Widget
-This is a small, quick launch widget for websites I've been recently using.
+This is a small, quick launch widget for websites I've been recently using: Google, YouTube, Twitch and Translator.
 
 ## Table Of Contents
 * [Project View](#project-view)
